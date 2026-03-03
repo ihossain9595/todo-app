@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { CircleCheckBig } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Header = () => {
-  const router = useRouter();
+  const pathname = usePathname();
 
   return (
     <header className="bg-white border-b">
@@ -19,11 +19,11 @@ const Header = () => {
         </Link>
 
         <nav className="flex gap-2.5">
-          <Button size={"lg"} variant={"secondary"} className="cursor-pointer" onClick={() => router.push("/employees")}>
-            Employees
+          <Button size={"lg"} variant={pathname.startsWith("/employees") ? "default" : "secondary"} asChild>
+            <Link href="/employees">Employees</Link>
           </Button>
-          <Button size={"lg"} variant={"default"} className="cursor-pointer" onClick={() => router.push("/tasks")}>
-            Tasks
+          <Button size={"lg"} variant={pathname.startsWith("/tasks") ? "default" : "secondary"} asChild>
+            <Link href="/tasks">Tasks</Link>
           </Button>
         </nav>
       </div>

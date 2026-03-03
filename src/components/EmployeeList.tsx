@@ -199,8 +199,8 @@ export default function EmployeeList() {
                 </div>
               </div>
             </div>
-            <Button className="w-full mt-4" onClick={() => setShowPreview(null)}>
-              Done
+            <Button className="w-full mt-4 cursor-pointer" onClick={() => setShowPreview(null)}>
+              Close
             </Button>
           </div>
         </DialogContent>
@@ -243,10 +243,10 @@ export default function EmployeeList() {
             </FieldGroup>
 
             <DialogFooter>
-              <Button type="button" variant="ghost" onClick={() => setOpenDialog(false)}>
+              <Button type="button" variant="ghost" className="cursor-pointer" onClick={() => setOpenDialog(false)}>
                 Cancel
               </Button>
-              <Button type="submit" disabled={isSubmitting}>
+              <Button type="submit" className="cursor-pointer" disabled={isSubmitting}>
                 {editingId ? "Update Employee" : "Create Employee"}
               </Button>
             </DialogFooter>

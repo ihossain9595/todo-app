@@ -203,10 +203,10 @@ export default function TaskManager() {
             </FieldGroup>
 
             <DialogFooter>
-              <Button type="button" variant="ghost" onClick={() => setOpenDialog(false)}>
+              <Button type="button" variant="ghost" className="cursor-pointer" onClick={() => setOpenDialog(false)}>
                 Cancel
               </Button>
-              <Button type="submit" disabled={isSubmitting}>
+              <Button type="submit" className="cursor-pointer" disabled={isSubmitting}>
                 {editingId ? "Update Task" : "Assign Task"}
               </Button>
             </DialogFooter>
