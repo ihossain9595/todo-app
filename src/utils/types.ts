@@ -14,4 +14,8 @@ export type TaskType = {
   id: string;
   employeeId: string;
   task: string;
+  createdAt: string;
+  updatedAt: string;
 };
+
+export type TaskFormValues = Omit<TaskType, "id" | "createdAt" | "updatedAt">;

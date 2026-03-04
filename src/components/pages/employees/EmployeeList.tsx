@@ -13,10 +13,9 @@ import { EmployeeFormValues, EmployeeType, TaskType } from "@/utils/types";
 import DataTable from "@/components/DataTable";
 import { Button } from "@/components/ui/button";
 import SectionHeader from "@/components/SectionHeader";
-import FormDialog from "@/components/dialogs/FormDialog";
+import FormDialog, { FormFieldConfig } from "@/components/dialogs/FormDialog";
 import DeleteDialog from "@/components/dialogs/DeleteDialog";
 import PreviewDialog from "@/components/dialogs/PreviewDialog";
-import { InputFieldConfig } from "@/components/fields/InputField";
 
 const DEFAULT_EMPLOYEE_VALUES = {
   employeeId: "",
@@ -27,12 +26,12 @@ const DEFAULT_EMPLOYEE_VALUES = {
 };
 
 const EMPLOYEE_FIELDS = [
-  { name: "employeeId", label: "Employee ID", placeholder: "ID (Unique)" },
-  { name: "fullName", label: "Full Name", placeholder: "John Doe" },
-  { name: "designation", label: "Designation", placeholder: "Developer" },
-  { name: "emailAddress", label: "Email", type: "email", placeholder: "email@example.com" },
-  { name: "phoneNumber", label: "Phone", placeholder: "01XXXXXXXXX" },
-] as InputFieldConfig<EmployeeFormValues>[];
+  { name: "employeeId", label: "Employee ID", placeholder: "ID (Unique)", fieldType: "input" },
+  { name: "fullName", label: "Full Name", placeholder: "John Doe", fieldType: "input" },
+  { name: "designation", label: "Designation", placeholder: "Developer", fieldType: "input" },
+  { name: "emailAddress", label: "Email", type: "email", placeholder: "email@example.com", fieldType: "input" },
+  { name: "phoneNumber", label: "Phone", placeholder: "01XXXXXXXXX", fieldType: "input" },
+] as FormFieldConfig<EmployeeFormValues>[];
 
 export default function EmployeeList() {
   const [employees, setEmployees] = useLocalStorage<EmployeeType[]>("employees", []);

@@ -2,15 +2,20 @@ import { Button } from "@/components/ui/button";
 import { FieldGroup } from "@/components/ui/field";
 import { Control, FieldValues } from "react-hook-form";
 import InputField, { InputFieldConfig } from "@/components/fields/InputField";
+import SelectField, { SelectFieldConfig } from "@/components/fields/SelectField";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
+
+export type FormFieldConfig<T extends FieldValues> =
+  | ({ fieldType: "input" } & InputFieldConfig<T>)
+  | ({ fieldType: "select" } & SelectFieldConfig<T>);
 
 type FormDialogProps<T extends FieldValues> = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   title: string;
   description?: string;
-  fields: InputFieldConfig<T>[];
-  control: Control<T>;
+  fields: FormFieldConfig<T>[];
+  control: Control<T, unknown>;
   onSubmit: () => void;
   onCancel: () => void;
   submitLabel: string;
@@ -20,7 +25,7 @@ type FormDialogProps<T extends FieldValues> = {
 const FormDialog = <T extends FieldValues>({
   open,
   onOpenChange,
-  title = "Create/Update",
+  title,
   description = "Fill in the details below.",
   fields,
   control,
@@ -39,9 +44,13 @@ const FormDialog = <T extends FieldValues>({
           </DialogHeader>
 
           <FieldGroup>
-            {fields.map((fieldConfig) => (
-              <InputField key={fieldConfig.name} control={control} {...fieldConfig} />
-            ))}
+            {fields.map((fieldConfig) =>
+              fieldConfig.fieldType === "select" ? (
+                <SelectField key={fieldConfig.name} control={control} {...fieldConfig} />
+              ) : (
+                <InputField key={fieldConfig.name} control={control} {...fieldConfig} />
+              ),
+            )}
           </FieldGroup>
 
           <DialogFooter>

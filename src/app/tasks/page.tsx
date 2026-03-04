@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import TaskList from "@/components/TaskList";
+import TaskList from "@/components/pages/tasks/TaskList";
 import { Spinner } from "@/components/ui/spinner";
 
 const TasksPage = () => {
