@@ -1,10 +1,14 @@
 export type EmployeeType = {
-  name: string;
   employeeId: string;
+  fullName: string;
   designation: string;
-  email: string;
-  phone: string;
+  emailAddress: string;
+  phoneNumber: string;
+  createdAt: string;
+  updatedAt: string;
 };
+
+export type EmployeeFormValues = Omit<EmployeeType, "createdAt" | "updatedAt">;
 
 export type TaskType = {
   id: string;

@@ -1,11 +1,11 @@
 import { z } from "zod";
 
 export const employeeSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
   employeeId: z.string().min(1, "Employee ID is required"),
+  fullName: z.string().min(2, "Name must be at least 2 characters"),
   designation: z.string().min(1, "Designation required"),
-  email: z.string().email("Invalid email"),
-  phone: z.string().min(7, "Invalid phone number"),
+  emailAddress: z.email("Invalid email"),
+  phoneNumber: z.string().min(11, "Invalid phone number"),
 });
 
 export type Employee = z.infer<typeof employeeSchema>;

@@ -1,19 +1,9 @@
-import { Suspense } from "react";
-import { Spinner } from "@/components/ui/spinner";
-import EmployeeList from "@/components/EmployeeList";
+import EmployeeList from "@/components/pages/employees/EmployeeList";
 
 const EmployeesPage = () => {
   return (
     <div className="max-w-7xl mx-auto">
-      <Suspense
-        fallback={
-          <div className="p-10 text-center">
-            <Spinner />
-          </div>
-        }
-      >
-        <EmployeeList />
-      </Suspense>
+      <EmployeeList />
     </div>
   );
 };
