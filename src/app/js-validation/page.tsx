@@ -30,14 +30,14 @@ const validate = (values: FormValues): FormErrors => {
 const JsValidationPage = () => {
   const [values, setValues] = useState<FormValues>({ fullName: "", emailAddress: "" });
   const [errors, setErrors] = useState<FormErrors>({});
+  const [touched, setTouched] = useState<Partial<Record<keyof FormValues, boolean>>>({});
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const updatedValues = { ...values, [e.target.name]: e.target.value };
     setValues(updatedValues);
 
-    if (Object.keys(errors).length > 0) {
-      setErrors(validate(updatedValues));
-    }
+    setTouched((prev) => ({ ...prev, [e.target.name]: true }));
+    setErrors(validate(updatedValues));
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -63,7 +63,7 @@ const JsValidationPage = () => {
           placeholder="John Doe"
           className="w-full px-3 py-2 text-sm border rounded-lg outline-none focus:ring-2 focus:ring-slate-300"
         />
-        {errors.fullName && <p className="text-xs text-red-500">{errors.fullName}</p>}
+        {touched.fullName && errors.fullName && <p className="text-xs text-red-500">{errors.fullName}</p>}
       </div>
 
       <div className="space-y-1">
@@ -75,7 +75,7 @@ const JsValidationPage = () => {
           placeholder="john@example.com"
           className="w-full px-3 py-2 text-sm border rounded-lg outline-none focus:ring-2 focus:ring-slate-300"
         />
-        {errors.emailAddress && <p className="text-xs text-red-500">{errors.emailAddress}</p>}
+        {touched.emailAddress && errors.emailAddress && <p className="text-xs text-red-500">{errors.emailAddress}</p>}
       </div>
 
       <button
